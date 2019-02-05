@@ -1,9 +1,12 @@
-ARG ErlangTag=20.3.8-alpine
-ARG AlpineVersion=latest
+## === change application name and git repository 
 ARG ApplicationName=cowboy_hello
 ARG GitUrl="https://github.com/aramyazdanpanah/cowboy_hello"
 
+## === select erlang version for compile 
+ARG ErlangTag=20.3.8-alpine
+ARG AlpineVersion=latest
 
+## === use erlang image for build application
 FROM erlang:${ErlangTag} as builder
 ARG GitUrl
 ARG ApplicationName 
@@ -15,6 +18,7 @@ WORKDIR ${ApplicationName}
 RUN make proto && \ 
     make rel-stage
 
+## === use alpine and install dependeny for run application
 FROM alpine:${AlpineVersion}
 ARG ApplicationName 
 RUN apk update && \
@@ -22,6 +26,6 @@ RUN apk update && \
     apk add libssl1.0 
 
 COPY --from=builder /${ApplicationName}/_build/stage/rel/${ApplicationName} /code
-WORKDIR /code
-CMD ["bin/cowboy_hello", "console"]
-
+WORKDIR /code 
+RUN mv bin/${ApplicationName} bin/application
+CMD ["bin/application", "foreground"]
