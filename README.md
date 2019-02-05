@@ -13,3 +13,10 @@ test
     $ curl localhost:90
     REST Hello World as HTML!
 ```
+ 
+ # How do I create image from my own application? 
+ for create image from self application while this application create with SEPC structe you must be chenge two variable
+in Docker file
+1:) GitUrl
+2:) ApplicationName
+
