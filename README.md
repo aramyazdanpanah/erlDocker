@@ -17,6 +17,6 @@ test
  # How do I create image from my own application? 
  for create image from self application while this application create with SEPC structe you must be chenge two variable
 in Docker file <br />
-1:) GitUrl <br />
-2:) ApplicationName <br />
+1- GitUrl <br />
+2- ApplicationName <br />
 
