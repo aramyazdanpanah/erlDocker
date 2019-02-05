@@ -8,5 +8,7 @@ docker build --no-cache . -t cowboy_hello:test
 docker run -d -p 90:80 cowboy_hello:test
 ```
 test
+```
     $ curl localhost:90
     REST Hello World as HTML!
+```
