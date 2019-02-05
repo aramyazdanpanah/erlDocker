@@ -19,4 +19,28 @@ test
 in Docker file <br />
 1- GitUrl <br />
 2- ApplicationName <br />
+```
+## ===change application name and git repository 
+ARG ApplicationName=cowboy_hello
+ARG GitUrl="https://github.com/aramyazdanpanah/cowboy_hello"
+```
+for example I want create image from https://github.com/aramyazdanpanah/cowboy_hello and my application is cowboy_hello <br />
 
+# Note
+for create image that has able  attach to erlang console you must cheage
+```
+CMD ["bin/application", "foreground"]
+```
+To 
+```
+CMD ["bin/application", "console"]
+```
+Note that you must run this image with -it flag
+
+```
+docker run -it -p 90:80 cowboy_hello:test
+```
+or 
+```
+docker run -itd -p 90:80 cowboy_hello:test
+```
